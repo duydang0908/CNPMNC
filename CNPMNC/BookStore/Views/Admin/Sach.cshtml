@@ -1,0 +1,150 @@
+﻿@using BookStore.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<BookStore.Models.SACH>
+
+@helper Truncate(string input, int length)
+{
+if (input.Length < length)
+{ @input}
+else
+{
+        @input.Substring(0, length)<text>...</text>
+}
+}
+
+@{
+    ViewBag.Title = "Sach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>QUẢN LÝ THÔNG TIN SÁCH</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Themmoisach")
+</p>
+<p>
+
+</p>
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <table class="table" align="center" border="1">
+        <tr>
+            <th style="width:200px">    Tên sách    </th>
+            <th style="width:100px">    Giá bán     </th>
+            <th style="width:300px">    Mô tả       </th>
+            <th style="width:120px">    Ảnh bìa     </th>
+            <th style="width:150px">    Ngày update </th>
+            <th style="width:120px">    SL. Tồn     </th>
+            <th style="width:120px">    Tên chủ đề  </th>
+            <th style="width:100px">    Tên NXB     </th>
+            <th style="width:200px"></th>
+        </tr>
+        <tr>
+            @*<th>
+                        @Html.DisplayNameFor(model => model.First().Tensach)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Dongia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Mota)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Hinhminhhoa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Ngaycapnhat)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Soluongban)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().MaCD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().MaNXB)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Soluongban)
+                    </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.solanxem)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.moi)
+                        </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().CHUDE.TenChuDe)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().NHAXUATBAN.TenNXB)
+                    </th>
+                    <th></th>
+                </tr>*@
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tensach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dongia)
+                </td>
+                <td>
+                    @Truncate(item.Mota, 20)
+                    @*@Html.DisplayFor(modelItem => item.Mota)*@
+                </td>
+                <td>
+                    <img src="@Url.Content("~/images/"+ item.Hinhminhhoa)"style="height:150px; width:150px" />
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.MaCD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaNXB)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soluongban)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.moi)
+                    </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
+                </td>*@
+                <td>
+                    @Html.ActionLink("Sửa", "Suasach", new { id = item.Masach }) |
+                    @Html.ActionLink("Chi tiết", "Chitietsach", new { id = item.Masach }) |
+                    @Html.ActionLink("Xóa", "Xoasach", new { id = item.Masach })
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Masach }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Masach }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Masach })*@
+                </td>
+            </tr>
+
+            }
+
+        </table>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        <div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("Sach", new { page = page }))
+        </div>
+        <style>
+            .MenuTrang li {
+                display: inline;
+            }
+        </style>
+    </div>

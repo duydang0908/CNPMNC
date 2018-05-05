@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookStore Login Form</title>
+    <link href="~/Content/stylelogin.css" rel="stylesheet" />
+
+
+</head> @using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <body>
+        <div class="body"></div>
+        <div class="grad"></div>
+        <div class="header">
+            <div>Sell<span>Book</span></div>
+        </div>
+        <br>
+
+        <div class="login">
+            <input type="text" placeholder="username" name="username"><br><br />
+            @ViewData["Loi1"]
+            <input type="password" placeholder="password" name="password"><br><br />
+            @ViewData["Loi2"]
+            <br />
+            <input type="submit" value="Login">
+
+            <h4 style="color:cyan; text-align:center">@ViewBag.ThongBao</h4>
+
+        </div>
+
+
+    </body> 
+}
+</html>

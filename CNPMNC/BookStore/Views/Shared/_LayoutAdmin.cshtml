@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    
+    <script src="~/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+
+</head>
+<body>
+
+    <div id="wrapper">
+        <div id="inner">
+
+            <div id="header">
+                <img src="~/images/logo.jpg" style="width:50%" />
+            </div>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">BOOK STORE</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            @Html.ActionLink("TRANG CHỦ", "Index", "Admin")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Quản lý chủ đề", "Sanpham", "Admin")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Quản lý Nhà xuất bản", "Nhaxuatban", "Admin")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Quản lý sách", "Sach", "Admin")
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
+
+        </div>
+        @*<dl id="browse">
+            <dt>@Html.Action("Chude", "BookStore")</dt>
+            <dt>@Html.Action("Nhaxuatban", "BookStore")</dt>
+
+        </dl>*@
+        <div class="container">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <br />
+
+</body>
+</html>
